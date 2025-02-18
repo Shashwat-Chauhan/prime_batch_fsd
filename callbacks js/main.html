@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const getMetaData = () => {
+            const name = prompt("Enter name")
+            console.log(name)
+            let numOfSub = prompt("Enter number of subjects")
+            numOfSub = parseInt(numOfSub)
+            console.log(numOfSub)
+            return numOfSub
+        }
+        
+
+        const getSubjects = (num) => {
+            const record = {};
+            for (let i = 1 ; i <= num ; i++){
+                const subName = prompt(`Enter name of subject ${i}`)
+                const marks = prompt(`Enter the marks for ${subName}`)
+                record[subName] = marks // This will not invoke error because you can change the memory size of record and its content , you just cant change the address 
+
+            }
+            console.log(record)
+
+        }
+        const record = {
+            maths: 84,
+            science: 90,
+            english: 70,
+            hindi:86,
+            social: 85
+
+        }
+        let totalMarks = 0
+        let totalSubjects = 0
+        const getPercentage = (obj) => {
+            const marks = Object.values(obj)
+
+            marks.forEach((a, idx) => {
+                totalMarks += a;
+                totalSubjects ++;
+
+            })
+            const percentage = totalMarks / totalSubjects
+            return percentage 
+        }
+
+        console.log("Percentage is ",getPercentage(record))
+
+
+        const getHighestScoringSubject = (obj) => {
+            entries = Object.entries(obj) 
+            currMarks_max = entries[0]
+            currSub_max = entries[1]
+            entries.forEach((elem) => {
+                if (elem[1] > currMarks_max){
+                    currMarks_max = elem
+                    currSub_max = elem[0]
+                }
+            })
+            return currMarks_max ,currSub_max
+        }
+        const ans = getHighestScoringSubject(record)
+        console.log("Maximum number is", ans[1] , "in" , ans[0] )
+
+
+        const getGrades = (percentage) => {
+            const grades = [
+                [60, "B"],
+                [70, "B+"],
+                [80, "A"],
+                [90, "A+"],
+            ]
+            let grade = "F"
+            grades.forEach((arr) => {
+                if( percentage >= arr[0] ){
+                    grade =  arr[1]
+                }
+            })
+            return grade
+        }
+
+        console.log(getGrades(98))
+        // const num = getMetaData()
+        // getSubjects(num)
+
+        
+
+        
+        // const marks = Object.values(record)    (Extract values of the object)
+        // const subjects = Object.keys(record)   (Extract the keys of the object)
+        // const entries = Object.entries(record) (Extract the key value pairs)
+
+
+        
+
+    </script>
+</body>
+</html>
+
+
+
+
+
